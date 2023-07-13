@@ -11,10 +11,49 @@
     <h1>Generate <br> <span>a Password </span></h1>
     <div class="display">
         <input type = "text" id="password" placeholder="Password">
-        <img src ="https://res.cloudinary.com/dvcqmoeu5/image/upload/v1689272179/Password%20generator/copy_gdh58i.png" alt=" " >
+        <img src ="https://res.cloudinary.com/dvcqmoeu5/image/upload/v1689272179/Password%20generator/copy_gdh58i.png" onclick="copypassword()" >
     </div>
-    <button><img src="https://res.cloudinary.com/dvcqmoeu5/image/upload/v1689272329/Password%20generator/generate_epxqxx.png"> Generate password</button>
+    <button onclick="createPassword()"> <img src="https://res.cloudinary.com/dvcqmoeu5/image/upload/v1689272329/Password%20generator/generate_epxqxx.png"> Generate password</button>
 </div>
+
+
+<script>
+    const passwordbox = document.getElementById("password");
+    const length = 12;
+
+    const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const lowercase = "abcdefghijklmnopqrstuvwxyz";
+    const number = "123456789";
+    const symbol = "!@#$%^&*()";
+
+    const allchars = uppercase+lowercase+number+symbol;
+    function createPassword(){
+        let password = "";
+        password += uppercase[Math.floor(Math.random()* uppercase.length)];
+        password += lowercase[Math.floor(Math.random()*lowercase.length)];
+        password += number[Math.floor(Math.random()*number.length)];
+        password += symbol[Math.floor(Math.random()*symbol.length)];
+
+        while(length>password.length){
+            password += allchars[Math.floor(Math.random()*allchars.length)];
+
+        }
+        passwordbox.value = password;
+
+
+    }
+
+
+    function copypassword(){
+        passwordbox.select();
+        document.execCommand("copy");
+
+    }
+
+
+
+
+</script>
 
 
 </body>
